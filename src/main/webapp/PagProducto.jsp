@@ -12,5 +12,8 @@
         <h1>Hello World!</h1>
         <h1>Hola Piero!</h1>
         <h1>Pobre Nikolle ;-;!</h1>
+        <%
+            Negocio obj = new Negocio();
+        %>
     </body>
 </html>
