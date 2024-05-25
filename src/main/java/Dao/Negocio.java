@@ -1,4 +1,4 @@
-package Dao;
+    package Dao;
 
 import Modelo.*;
 import java.util.ArrayList;
@@ -72,4 +72,57 @@ public class Negocio {
         }
         return p;
     }
+    
+    public List<Producto> listMasVendidos() {
+        List<Producto> lista = new ArrayList();
+        try {
+            Producto pro;
+            Connection cn = new MySQLConexion().getConexion();
+            String sql = "SELECT p.id_producto, p.nom_producto, SUM(bp.cant) cantidad FROM producto p join boleta_producto bp on p.id_producto = bp.id_producto group by p.id_producto order by cantidad desc limit 1,8";
+            PreparedStatement stm = cn.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                pro = new Producto(rs.getString(1),rs.getString(2),rs.getInt(3));
+                lista.add(pro);
+            }
+        } catch (Exception e) {
+            System.err.println(e.toString());
+        }
+        return lista;
+    }
+        public List<Producto> listMasCaros() {
+        List<Producto> lista = new ArrayList();
+        try {
+            Producto pro;
+            Connection cn = new MySQLConexion().getConexion();
+            String sql = "SELECT id_producto , nom_producto, monto_producto FROM producto ORDER BY producto.monto_producto DESC LIMIT 1,8";
+            PreparedStatement stm = cn.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                pro = new Producto(rs.getString(1),rs.getString(2),rs.getDouble(3));
+                lista.add(pro);
+            }
+        } catch (Exception e) {
+            System.err.println(e.toString());
+        }
+        return lista;
+    }
+        
+      public List<Boleta_Cliente> listVentaEdad() {
+        List<Boleta_Cliente> lista = new ArrayList();
+        try {
+            Boleta_Cliente bc;
+            Connection cn = new MySQLConexion().getConexion();
+            String sql = "SELECT c.edad_cliente edad, SUM(b.monto_tot_boleta) TOT FROM boleta b join cliente c on b.id_cliente=c.id_cliente GROUP BY edad ORDER BY edad DESC LIMIT 1,8";
+            PreparedStatement stm = cn.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                bc = new Boleta_Cliente(rs.getInt(1),rs.getDouble(2));
+                lista.add(bc);
+            }
+        } catch (Exception e) {
+            System.err.println(e.toString());
+        }
+        return lista;
+    }  
 }

@@ -32,6 +32,18 @@ public class Producto {
         this.ruta_imagen = ruta_imagen.toUpperCase().charAt(0) + ruta_imagen.substring(1,ruta_imagen.length());
     }
     
+    public Producto(String id_producto, String nom_producto, int cant_producto) {
+        this.id_producto = id_producto;
+        this.nom_producto = nom_producto;
+        this.cant_producto = cant_producto;
+    }
+
+    public Producto(String id_producto, String nom_producto, double monto_producto) {
+        this.id_producto = id_producto;
+        this.nom_producto = nom_producto;
+        this.monto_producto = monto_producto;
+    }
+    
     public Producto() {
     }
     
