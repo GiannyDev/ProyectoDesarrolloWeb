@@ -12,7 +12,7 @@
             <li><a href="#">DIRECCIONES</a></li>
             <li><a href="PagProductoCRUD.jsp">PRODUCTOS</a></li>
             <li><a href="#">USUARIOS</a></li>
-            <li><a href="#">VENTAS</a></li>
+            <li><a href="Ventas.jsp">VENTAS</a></li>
         </ul>
     </nav>
     <div class="carrito"><a class="boton_carrito" href="carrito.php" id="carrito_mini"></a></div>
