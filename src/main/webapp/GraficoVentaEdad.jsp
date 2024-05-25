@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="Modelo.*,Dao.Negocio" %>
- 
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -46,14 +46,31 @@
             String tipo = request.getParameter("opc");
             String label = "", data = "";
             Negocio obj = new Negocio();
+            double t1 = 0, t2 = 0, t3 = 0, t4 = 0, t5 = 0, t6 = 0;
 
-            for (Producto x : obj.listMasVendidos()) {
-                label = label + "'" + x.getNom_producto() + "',";
-                data = data + x.getCant_producto() + ",";
+            for (Boleta_Cliente x : obj.listVentaEdad()) {
+                if (x.getEdad_cliente() <= 25) {
+                    t1 += x.getMonto_tot();
+                }
+                if (x.getEdad_cliente() > 25 && x.getEdad_cliente() <= 35) {
+                    t2 += x.getMonto_tot();
+                }
+                if (x.getEdad_cliente() > 35 && x.getEdad_cliente() <= 45) {
+                    t3 += x.getMonto_tot();
+                }
+                if (x.getEdad_cliente() > 45 && x.getEdad_cliente() <= 55) {
+                    t4 += x.getMonto_tot();
+                }
+                if (x.getEdad_cliente() > 55 && x.getEdad_cliente() <= 65) {
+                    t5 += x.getMonto_tot();
+                }
+                if (x.getEdad_cliente() > 65) {
+                    t6 += x.getMonto_tot();
+                }
+                data = t1 + "," + t2 + "," + t3 + "," + t4 + "," + t5 + "," + t6;
+
             }
-            if (data.length() > 0) {
-                data = data.substring(0, data.length() - 1);
-            }
+
             if (request.getParameter("opc") != null)
                 tipo = request.getParameter("opc");
         %>
@@ -77,7 +94,7 @@
                                 </div>
                                 <br>
                                 <div class="row-sm-8">
-                                    <h2><b>Gráfico de los productos más vendidos</b></h2>
+                                    <h2><b>Gráfico de los ventas por edades</b></h2>
                                     <canvas id="myChart"></canvas>
                                 </div>
                             </div>          
@@ -89,17 +106,18 @@
                             fondo.addColorStop(0, '#608FC4');
                             fondo.addColorStop(1, '#5CB5C3');   
                             var myChart = new Chart(ctx, {
-                                type: "<%=tipo%>",
-                                data: {
-                                    labels: [<%=label%>],
-                                    datasets: [
-                                        {
+                            type: "<%=tipo%>",
+                                    data: {
+                                    labels: ["18-25", "26-35", "36-45", "46-55", "56-65", "66+"],
+                                            datasets: [
+                                            {
                                             label: "Monto",
-                                            data: [<%=data%>,0],
+                                                    data: [<%=data%>, 0],
+                                                   
                                             backgroundColor: fondo,
-                                        },
-                                    ],
-                                },
+                                            },
+                                            ],
+                                    },
                             });
                         </script>
                         </html>

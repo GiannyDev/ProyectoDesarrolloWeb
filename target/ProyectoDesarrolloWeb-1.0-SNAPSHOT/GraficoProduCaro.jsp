@@ -18,7 +18,7 @@
             }
             body {
                 text-align: center;
-                color: #608FC4;
+                color: green;
             }
             h2 {
                 text-align: center;
@@ -72,12 +72,12 @@
                                             <input type="radio" name="opc" value="pie" <%=b%>> Circular
                                             <input type="radio" name="opc" value="line" <%=c%>> Lineal
                                         </div>
-                                        <button class="btn btn-info" >Enviar</button>
+                                        <button class="btn btn-success" >Enviar</button>
                                     </form>
                                 </div>
                                 <br>
                                 <div class="row-sm-8">
-                                    <h2><b>Gráfico de los productos más vendidos</b></h2>
+                                    <h2>Gráfico de los productos más vendidos</h2>
                                     <canvas id="myChart"></canvas>
                                 </div>
                             </div>          
@@ -85,9 +85,6 @@
                         </body>
                         <script>
                             var ctx = document.getElementById("myChart").getContext("2d");
-                            var fondo =ctx.createLinearGradient(750, 0, 100, 0);
-                            fondo.addColorStop(0, '#608FC4');
-                            fondo.addColorStop(1, '#5CB5C3');   
                             var myChart = new Chart(ctx, {
                                 type: "<%=tipo%>",
                                 data: {
@@ -96,7 +93,7 @@
                                         {
                                             label: "Monto",
                                             data: [<%=data%>,0],
-                                            backgroundColor: fondo,
+                                            backgroundColor: "rgba(153,205,1,0.6)",
                                         },
                                     ],
                                 },

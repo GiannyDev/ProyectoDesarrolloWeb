@@ -1,9 +1,0 @@
-Util\SQLConexion.class
-Util\MySQLConexion.class
-Modelo\Direccion.class
-Modelo\Boleta.class
-Modelo\Boleta_Cliente.class
-Modelo\Usuario.class
-Modelo\CategoriaProdu.class
-Modelo\Producto.class
-Dao\Negocio.class
