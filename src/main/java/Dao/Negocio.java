@@ -1,18 +1,18 @@
 package Dao;
 
-import Util.MySQLConexion;
 import Modelo.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;
+import Util.MySQLConexion;
 
 public class Negocio {
 
     public List<CategoriaProdu> listCategoria() {
         List<CategoriaProdu> lista = new ArrayList();
         try {
-            CategoriaProdu cat;
             Connection cn = MySQLConexion.getConexion();
+            CategoriaProdu cat;
             String sql = "SELECT id_tipo_producto, nom_tipo_producto FROM tipo_producto";
             PreparedStatement stm = cn.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();

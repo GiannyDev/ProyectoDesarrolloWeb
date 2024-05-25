@@ -6,6 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Productos</title>
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
+        <link href="css/adminlte.min.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <%@include file="header.jsp"%>
