@@ -1,0 +1,8 @@
+Modelo\Direccion.class
+Modelo\Boleta.class
+Modelo\Usuario.class
+Modelo\CategoriaProdu.class
+Modelo\Producto.class
+util\SQLConexion.class
+util\MySQLConexion.class
+Dao\Negocio.class
