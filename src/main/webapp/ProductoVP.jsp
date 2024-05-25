@@ -12,7 +12,7 @@
         <%
             Negocio obj = new Negocio();
             String id_produ = "";
-            if (request.getParameter("id_produ") != null && !request.getParameter("id_produ").equals("--Elegir--")) {
+            if (request.getParameter("id_produ") != null && !request.getParameter("id_produ").equals("--Elegir--") && !request.getParameter("id_produ").equals("")) {
                 id_produ = request.getParameter("id_produ");
                 Producto p = obj.getProducto(id_produ);
                 out.print(p.mostrarPagina());
