@@ -3,7 +3,7 @@ package Util;
 import java.sql.*;
 
 public class MySQLConexion {
-
+    
     public static Connection getConexion() {
         Connection con = null;
         try {

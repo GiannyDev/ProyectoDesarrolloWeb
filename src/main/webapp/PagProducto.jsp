@@ -9,12 +9,31 @@
     </head>
     <body>
         <%@include file="header.jsp"%>
-        <h1>Hello World!</h1>
-        <h1>Hola Piero!</h1>
-        <h1>Pobre Nikolle ;-;!</h1>
-        <h1>Holaaaaaaaaaaaaaaaaaaaaaaaa</h1>
         <%
             Negocio obj = new Negocio();
+            String tipo_produ = "";
+            if (request.getParameter("tipo_produ") != null) {
+                tipo_produ = request.getParameter("tipo_produ");
+            }
         %>
+        <form>
+            <div class="form-group">
+                <label>Seleccione la categoria del producto</label>
+                <select name="tipo_produ" class="form-control" onchange="submit()">
+                    <option>--Elegir--</option>
+                    <%
+                        for (CategoriaProdu x : obj.listCategoria()) {
+                            if (tipo_produ.equals(x.getId_cate())) {
+                                out.print("<option value=" + x.getId_cate()+ " selected>" + x.getNom_cate());
+                            } else {
+                                out.print("<option value=" + x.getId_cate()+ ">" + x.getNom_cate());
+                            }
+                        }
+                    %>
+                </select>
+
+            </div>
+        </form>
+        
     </body>
 </html>
