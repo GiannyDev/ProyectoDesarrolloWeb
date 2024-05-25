@@ -9,12 +9,10 @@
     </head>
     <body>
         <%@include file="header.jsp"%>
-<<<<<<< HEAD
         <h1>Hello World!</h1>
         <h1>Hola Piero!</h1>
         <h1>Pobre Nikolle ;-;!</h1>
-=======
->>>>>>> e302ff5 (a)
+        <h1>Holaaaaaaaaaaaaaaaaaaaaaaaa</h1>
         <%
             Negocio obj = new Negocio();
         %>
