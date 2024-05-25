@@ -10,7 +10,7 @@
             <li><a href="#">INICIO</a></li>
             <li><a href="#">HISTORIAL</a></li>
             <li><a href="#">DIRECCIONES</a></li>
-            <li><a href="#">PRODUCTOS</a></li>
+            <li><a href="PagProductoCRUD.jsp">PRODUCTOS</a></li>
             <li><a href="#">USUARIOS</a></li>
             <li><a href="#">VENTAS</a></li>
         </ul>

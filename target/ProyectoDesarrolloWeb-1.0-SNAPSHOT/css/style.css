@@ -796,7 +796,7 @@ a:active {
 /*Producto pagina propia */
 
 
-.tiulo_producto {
+.titulo_producto {
     font-size: 35px;
     font-family: Arial;
     justify-content: flex-start;
@@ -804,6 +804,7 @@ a:active {
     color: #445C8F;
     align-items: center;
     display: flex;
+    width: 350px;
 }
 
 .letras_producto_sm {
