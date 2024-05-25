@@ -30,7 +30,7 @@ public class Negocio {
         List<Producto> lista = new ArrayList();
         try {
             Producto pro;
-            Connection cn = new MySQLConexion().getConexion();
+            Connection cn = MySQLConexion.getConexion();
             String sql = "SELECT id_producto, nom_producto, monto_producto, id_tipo_producto, ruta_imagen FROM producto WHERE id_tipo_producto = ?";
             PreparedStatement stm = cn.prepareStatement(sql);
             stm.setString(1, tipo);
