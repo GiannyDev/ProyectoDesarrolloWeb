@@ -8,7 +8,7 @@ public class SQLConexion {
         Connection con = null;
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            String url = "jdbc:sqlserver://localhost:3306;database=farmacia";
+            String url = "jdbc:sqlserver://localhost:3307;database=farmacia";
             String usr = "sa";
             String psw = "sql";
             con = DriverManager.getConnection(url, usr, psw);
