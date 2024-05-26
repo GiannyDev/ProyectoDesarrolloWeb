@@ -195,7 +195,7 @@ public class Negocio {
         } catch (Exception e) {
             System.err.println(e.toString());
         }
-        
+
         return estado;
     }
 }
