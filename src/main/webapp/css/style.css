@@ -878,7 +878,7 @@ a:active {
 
 .mitad_pantalla_producto {
     width: 350px;
-    height: 350px;
+    height: auto;
     margin: 0px 30px;
     display: flex;
     flex-wrap: wrap;

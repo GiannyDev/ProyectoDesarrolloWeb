@@ -18,7 +18,7 @@
             }
             body {
                 text-align: center;
-                color: green;
+                color: #608FC4;
             }
             h2 {
                 text-align: center;
@@ -47,9 +47,9 @@
             String label = "", data = "";
             Negocio obj = new Negocio();
 
-            for (Producto x : obj.listMasVendidos()) {
-                label = label + "'" + x.getNom_producto() + "',";
-                data = data + x.getCant_producto() + ",";
+            for (Producto x : obj.listMasCaros()) {
+                label = label + "'"+x.getNom_producto() + "',";
+                data = data + x.getMonto_producto() + ",";
             }
             if (data.length() > 0) {
                 data = data.substring(0, data.length() - 1);
@@ -72,12 +72,12 @@
                                             <input type="radio" name="opc" value="pie" <%=b%>> Circular
                                             <input type="radio" name="opc" value="line" <%=c%>> Lineal
                                         </div>
-                                        <button class="btn btn-success" >Enviar</button>
+                                        <button class="btn btn-info" >Enviar</button>
                                     </form>
                                 </div>
                                 <br>
                                 <div class="row-sm-8">
-                                    <h2>Gráfico de los productos más vendidos</h2>
+                                    <h2><b>Gráfico de los productos más caros</b></h2>
                                     <canvas id="myChart"></canvas>
                                 </div>
                             </div>          
@@ -85,6 +85,9 @@
                         </body>
                         <script>
                             var ctx = document.getElementById("myChart").getContext("2d");
+                            var fondo =ctx.createLinearGradient(750, 0, 100, 0);
+                            fondo.addColorStop(0, '#608FC4');
+                            fondo.addColorStop(1, '#5CB5C3');   
                             var myChart = new Chart(ctx, {
                                 type: "<%=tipo%>",
                                 data: {
@@ -93,7 +96,7 @@
                                         {
                                             label: "Monto",
                                             data: [<%=data%>,0],
-                                            backgroundColor: "rgba(153,205,1,0.6)",
+                                            backgroundColor: fondo,
                                         },
                                     ],
                                 },
