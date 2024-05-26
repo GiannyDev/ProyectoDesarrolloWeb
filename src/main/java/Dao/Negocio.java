@@ -1,4 +1,4 @@
-    package Dao;
+package Dao;
 
 import Modelo.*;
 import java.util.ArrayList;
@@ -46,6 +46,7 @@ public class Negocio {
         }
         return lista;
     }
+
     public Producto getProducto(String id_produ) {
         Producto p = new Producto();
         try {
@@ -72,7 +73,7 @@ public class Negocio {
         }
         return p;
     }
-    
+
     public List<Producto> listMasVendidos() {
         List<Producto> lista = new ArrayList();
         try {
@@ -82,7 +83,7 @@ public class Negocio {
             PreparedStatement stm = cn.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
-                pro = new Producto(rs.getString(1),rs.getString(2),rs.getInt(3));
+                pro = new Producto(rs.getString(1), rs.getString(2), rs.getInt(3));
                 lista.add(pro);
             }
         } catch (Exception e) {
@@ -90,7 +91,8 @@ public class Negocio {
         }
         return lista;
     }
-        public List<Producto> listMasCaros() {
+
+    public List<Producto> listMasCaros() {
         List<Producto> lista = new ArrayList();
         try {
             Producto pro;
@@ -99,7 +101,7 @@ public class Negocio {
             PreparedStatement stm = cn.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
-                pro = new Producto(rs.getString(1),rs.getString(2),rs.getDouble(3));
+                pro = new Producto(rs.getString(1), rs.getString(2), rs.getDouble(3));
                 lista.add(pro);
             }
         } catch (Exception e) {
@@ -107,8 +109,8 @@ public class Negocio {
         }
         return lista;
     }
-        
-      public List<Boleta_Cliente> listVentaEdad() {
+
+    public List<Boleta_Cliente> listVentaEdad() {
         List<Boleta_Cliente> lista = new ArrayList();
         try {
             Boleta_Cliente bc;
@@ -117,12 +119,83 @@ public class Negocio {
             PreparedStatement stm = cn.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
-                bc = new Boleta_Cliente(rs.getInt(1),rs.getDouble(2));
+                bc = new Boleta_Cliente(rs.getInt(1), rs.getDouble(2));
                 lista.add(bc);
             }
         } catch (Exception e) {
             System.err.println(e.toString());
         }
         return lista;
-    }  
+    }
+
+    public List<Cliente> getClientes() {
+        List<Cliente> lista = new ArrayList();
+        try {
+            Connection cn = new MySQLConexion().getConexion();
+            String sql = "SELECT id_cliente, nom_cliente, ape_cliente, telf_cliente FROM cliente";
+            PreparedStatement stm = cn.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Cliente c = new Cliente();
+                c.setDni_cliente(rs.getString(1));
+                c.setNom_cliente(rs.getString(2));
+                c.setApe_cliente(rs.getString(3));
+                c.setEdad_cliente(rs.getInt(4));
+                c.setTelf_cliente(rs.getString(4));
+                lista.add(c);
+            }
+        } catch (Exception e) {
+            System.err.println(e.toString());
+        }
+
+        return lista;
+    }
+
+    public List<Direccion> getDirecciones(String clienteID) {
+        List<Direccion> lista = new ArrayList();
+        try {
+            Connection cn = new MySQLConexion().getConexion();
+            String sql = "SELECT id_direccion, nom_com_direccion, dni_direccion, telf_direccion, dir_direccion, ref_direccion FROM direccion WHERE id_cliente = ?";
+            PreparedStatement stm = cn.prepareStatement(sql);
+            stm.setString(1, clienteID);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Direccion c = new Direccion();
+                c.setId_direccion(rs.getString(1));
+                c.setNom_com_direccion(rs.getString(2));
+                c.setDni_direccion(rs.getString(3));
+                c.setTelf_direccion(rs.getString(4));
+                c.setDir_direccion(rs.getString(5));
+                c.setRef_direccion(rs.getString(6));
+                lista.add(c);
+            }
+        } catch (Exception e) {
+            System.err.println(e.toString());
+        }
+
+        return lista;
+    }
+
+    public boolean updateDireccion(Direccion dir) {
+        boolean estado = false;
+        try {
+            Connection cn = new MySQLConexion().getConexion();
+            String sql = "UPDATE direccion SET nom_com_direccion = ?, dni_direccion = ?, telf_direccion = ?, dir_direccion = ?, ref_direccion = ? where id_direccion = ?";
+            PreparedStatement stm = cn.prepareStatement(sql);
+            stm.setString(1, dir.getNom_com_direccion());
+            stm.setString(2, dir.getDni_direccion());
+            stm.setString(3, dir.getTelf_direccion());
+            stm.setString(4, dir.getDir_direccion());
+            stm.setString(5, dir.getRef_direccion());
+            stm.setString(6, dir.getId_direccion());
+            if (stm.executeUpdate() > 0) {
+                estado = true;
+            }
+            cn.close();
+        } catch (Exception e) {
+            System.err.println(e.toString());
+        }
+
+        return estado;
+    }
 }
