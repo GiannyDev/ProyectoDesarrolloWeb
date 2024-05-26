@@ -38,7 +38,7 @@
             </div>
         </form>
         <form action="ProductoVP.jsp" target="zona">
-            <div class="form-group">
+            <div class="form-group">    
                 <label>Seleccione el producto</label>
                 <select name="id_produ" class="form-control" onchange="submit()">
                     <option>--Elegir--</option>
