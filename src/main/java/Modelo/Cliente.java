@@ -8,14 +8,14 @@ package Modelo;
  *
  * @author piero
  */
-public class Usuario { 
+public class Cliente { 
     private String dni_cliente;
     private String nom_cliente;
     private String ape_cliente;
     private int edad_cliente;
     private String telf_cliente;
 
-    public Usuario(String dni_cliente, String nom_cliente, String ape_cliente, int edad_cliente, String telf_cliente) {
+    public Cliente(String dni_cliente, String nom_cliente, String ape_cliente, int edad_cliente, String telf_cliente) {
         this.dni_cliente = dni_cliente;
         this.nom_cliente = nom_cliente;
         this.ape_cliente = ape_cliente;
@@ -23,7 +23,7 @@ public class Usuario {
         this.telf_cliente = telf_cliente;
     }
 
-    public Usuario() {
+    public Cliente() {
     }
     
     public String getDni_cliente() {
