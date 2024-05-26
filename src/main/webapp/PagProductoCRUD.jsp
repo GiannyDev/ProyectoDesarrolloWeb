@@ -23,6 +23,7 @@
         <%
             Negocio obj = new Negocio();
             String tipo_produ = "", id_produ = "";
+            boolean se_selecciono = false;
             if (request.getParameter("tipo_produ") != null) {
                 tipo_produ = request.getParameter("tipo_produ");
             }
@@ -35,7 +36,7 @@
                 <div class="col-sm-4">
                     <form>
                         <div class="form-group">
-                            <label>Seleccione la categoria del producto</label>
+                            <label class="direccion_subtitulo">Seleccione la categoria</label>
                             <select name="tipo_produ" class="form-control" onchange="submit()">
                                 <option>--Elegir--</option>
                                 <%
@@ -50,13 +51,14 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Seleccione el producto</label>
+                            <label class="direccion_subtitulo">Seleccione el producto</label>
                             <select name="id_produ" class="form-control" onchange="submit()">
                                 <option>--Elegir--</option>
                                 <%
                                     for (Producto x : obj.listProducto(tipo_produ)) {
                                         if (id_produ.equals(x.getId_producto())) {
                                             out.print("<option value=" + x.getId_producto() + " selected>" + x.getNom_producto());
+                                            se_selecciono = true;
                                         } else {
                                             out.print("<option value=" + x.getId_producto() + ">" + x.getNom_producto());
                                         }
@@ -68,22 +70,22 @@
                 </div>
                 <div class="col-sm-2 par-botones">
                     <%
-                        if (request.getParameter("id_produ") != null && !request.getParameter("id_produ").equals("--Elegir--") && !request.getParameter("id_produ").equals("")) {
-                            out.print("<a href='#' class='btn btn-success'>Ingresar Producto</a>");
-                            out.print("<a href='#' class='btn btn-success'>Ingresar Descuento</a>");
+                        if (se_selecciono) {
+                            out.print("<a href='PagProducto.jsp' class='btn btn-success'>Ingresar Producto</a>");
+                            out.print("<a href='#' class='btn btn-success'>Ver Descuentos</a>");
                         }
                     %>
                 </div>
                 <div class="col-sm-2 par-botones">
                     <%
-                        if (request.getParameter("id_produ") != null && !request.getParameter("id_produ").equals("--Elegir--") && !request.getParameter("id_produ").equals("")) {
-                            out.print("<a href='#' class='btn btn-success'>Editar Producto</a>");
-                            out.print("<a href='#' class='btn btn-success'>Borrar Producto</a>");
+                        if (se_selecciono) {
+                            out.print("<a href='PagProducto.jsp?id_produ=" + id_produ + "' class='btn btn-success'>Editar Producto</a>");
+                            out.print("<a href='Control?opc=1&id_produ=" + id_produ + "' class='btn btn-success'>Borrar Producto</a>");
                         }
                     %>
                 </div>
             </div>
         </div>
-        <iframe src="ProductoVP.jsp?id_produ=<%=id_produ%>" width="100%" frameborder="0" scrolling="no" height="600px"></iframe>
+        <iframe src="ProductoVP.jsp?id_produ=<%if(se_selecciono)out.print(id_produ);%>" width="100%" frameborder="0" scrolling="no" height="600px"></iframe>
     </body>
 </html>

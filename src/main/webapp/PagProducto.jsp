@@ -11,7 +11,6 @@
         <link href="css/adminlte.min.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <%@include file="header.jsp"%>
         <%
             Negocio obj = new Negocio();
             String cli = "";

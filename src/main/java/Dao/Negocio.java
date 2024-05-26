@@ -37,7 +37,6 @@ public class Negocio {
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
                 pro = new Producto(rs.getString(1), rs.getString(2), rs.getDouble(3), rs.getString(4), rs.getString(5));
-                System.out.println(rs.getString(1));
                 lista.add(pro);
             }
 
@@ -140,7 +139,6 @@ public class Negocio {
                 c.setDni_cliente(rs.getString(1));
                 c.setNom_cliente(rs.getString(2));
                 c.setApe_cliente(rs.getString(3));
-                c.setEdad_cliente(rs.getInt(4));
                 c.setTelf_cliente(rs.getString(4));
                 lista.add(c);
             }
@@ -197,5 +195,21 @@ public class Negocio {
         }
 
         return estado;
+    }
+    
+    public boolean elimProducto(String id_produ) {
+        boolean eliminado = false;
+        try {
+            Connection cn = new MySQLConexion().getConexion();
+            String sql = "DELETE FROM producto WHERE id_producto = ?";
+            PreparedStatement stm = cn.prepareStatement(sql);
+            stm.setString(1, id_produ);
+            if (stm.executeUpdate() > 0) {
+                eliminado = true;
+            }
+        } catch (Exception e) {
+            System.err.println(e.toString());
+        }
+        return eliminado;
     }
 }
