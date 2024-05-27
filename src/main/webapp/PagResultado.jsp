@@ -1,9 +1,3 @@
-<%-- 
-    Document   : Resultado
-    Created on : 26 may 2024, 15:34:53
-    Author     : piero
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

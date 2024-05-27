@@ -1,6 +1,5 @@
-<%@page import="Modelo.Direccion"%>
+<%@page import="Modelo.*"%>
 <%@page import="Dao.Negocio"%>
-<%@page import="Modelo.Cliente"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

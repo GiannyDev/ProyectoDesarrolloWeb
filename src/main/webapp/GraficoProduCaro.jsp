@@ -1,9 +1,3 @@
-<%-- 
-    Document   : Grafico
-    Created on : 13 may. 2024, 13:53:34
-    Author     : LAB-USR-LCENTRO
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="Modelo.*,Dao.Negocio" %>
  

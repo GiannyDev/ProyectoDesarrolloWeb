@@ -1,9 +1,3 @@
-<%-- 
-    Document   : Ventas
-    Created on : 25 may. 2024, 16:45:28
-    Author     : Christina
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
