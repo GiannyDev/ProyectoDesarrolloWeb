@@ -70,8 +70,8 @@
                 </div>
                 <div class="col-sm-2 par-botones">
                     <%
+                        out.print("<a href='PagProducto.jsp?opc=2' class='btn btn-success'>Agregar Producto</a>");
                         if (se_selecciono) {
-                            out.print("<a href='PagProducto.jsp' class='btn btn-success'>Ingresar Producto</a>");
                             out.print("<a href='#' class='btn btn-success'>Ver Descuentos</a>");
                         }
                     %>
@@ -79,7 +79,7 @@
                 <div class="col-sm-2 par-botones">
                     <%
                         if (se_selecciono) {
-                            out.print("<a href='PagProducto.jsp?id_produ=" + id_produ + "' class='btn btn-success'>Editar Producto</a>");
+                            out.print("<a href='PagProducto.jsp?opc=3&id_produ=" + id_produ + "' class='btn btn-success'>Editar Producto</a>");
                             out.print("<a href='Control?opc=1&id_produ=" + id_produ + "' class='btn btn-success'>Borrar Producto</a>");
                         }
                     %>

@@ -15,12 +15,14 @@
     <body>
         <%@include file="header.jsp"%>
         <%
-            boolean eliminado = (boolean) request.getAttribute("eliminado");
+            boolean resultado = (boolean) request.getAttribute("resultado");
             String volver = (String) request.getAttribute("volver");
-            if (eliminado) {
-                out.print("<div class='direccion_titulo2'>Eliminado correctamente</div>");
+            String verdadero = (String) request.getAttribute("verdadero");
+            String falso = (String) request.getAttribute("falso");
+            if (resultado) {
+                out.print("<div class='direccion_titulo2'>" + verdadero + "</div>");
             } else {
-                out.print("<div class='direccion_titulo2 error'>Hubo un error al eliminar</div>");
+                out.print("<div class='direccion_titulo2 error'>" + falso + "</div>");
             }
             out.print("<center><a href='" + volver + "' class='btn btn-success'>Volver</a></center>");
         %>

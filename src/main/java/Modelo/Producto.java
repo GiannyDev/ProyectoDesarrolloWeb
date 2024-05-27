@@ -11,10 +11,11 @@ import java.text.DecimalFormat;
  * @author piero
  */
 public class Producto {
+
     private String id_producto;
     private String nom_producto;
+    private String desc_producto;
     private double monto_producto;
-    private String des_producto;
     private int cant_producto;
     private String id_tipo_producto;
     private String ruta_imagen;
@@ -24,14 +25,23 @@ public class Producto {
     private int mes;
     private int anio;
 
-    public Producto(String id_producto, String nom_producto, double monto_producto, String id_tipo_producto, String ruta_imagen) {
+    public Producto(String nom_producto, String desc_producto, double monto_producto, String id_tipo_producto, String ruta_imagen) {
+        this.nom_producto = nom_producto;
+        this.desc_producto = desc_producto;
+        this.monto_producto = monto_producto;
+        this.id_tipo_producto = id_tipo_producto;
+        this.ruta_imagen = ruta_imagen.toUpperCase().charAt(0) + ruta_imagen.substring(1, ruta_imagen.length());
+    }
+
+    public Producto(String id_producto, String nom_producto, String desc_producto, double monto_producto, String id_tipo_producto, String ruta_imagen) {
         this.id_producto = id_producto;
         this.nom_producto = nom_producto;
+        this.desc_producto = desc_producto;
         this.monto_producto = monto_producto;
         this.id_tipo_producto = id_tipo_producto;
         this.ruta_imagen = ruta_imagen.toUpperCase().charAt(0) + ruta_imagen.substring(1,ruta_imagen.length());
-    }
-    
+    }    
+
     public Producto(String id_producto, String nom_producto, int cant_producto) {
         this.id_producto = id_producto;
         this.nom_producto = nom_producto;
@@ -43,10 +53,17 @@ public class Producto {
         this.nom_producto = nom_producto;
         this.monto_producto = monto_producto;
     }
+
+    public Producto(String nom_producto, double monto_producto, String id_tipo_producto, String ruta_imagen) {
+        this.nom_producto = nom_producto;
+        this.monto_producto = monto_producto;
+        this.id_tipo_producto = id_tipo_producto;
+        this.ruta_imagen = ruta_imagen.toUpperCase().charAt(0) + ruta_imagen.substring(1, ruta_imagen.length());
+    }
     
     public Producto() {
     }
-    
+
     public void Oferta(boolean oferta_producto, double descuento, int dia, int mes, int anio) {
         this.oferta_producto = oferta_producto;
         this.descuento = descuento;
@@ -79,12 +96,12 @@ public class Producto {
         this.monto_producto = monto_producto;
     }
 
-    public String getDes_producto() {
-        return des_producto;
+    public String getDesc_producto() {
+        return desc_producto;
     }
 
-    public void setDes_producto(String des_producto) {
-        this.des_producto = des_producto;
+    public void setDesc_producto(String des_producto) {
+        this.desc_producto = des_producto;
     }
 
     public int getCant_producto() {
@@ -108,7 +125,7 @@ public class Producto {
     }
 
     public void setRuta_imagen(String ruta_imagen) {
-        this.ruta_imagen = ruta_imagen.toUpperCase().charAt(0) + ruta_imagen.substring(1,ruta_imagen.length());
+        this.ruta_imagen = ruta_imagen.toUpperCase().charAt(0) + ruta_imagen.substring(1, ruta_imagen.length());
     }
 
     public boolean isOferta_producto() {
@@ -150,41 +167,41 @@ public class Producto {
     public void setAnio(int anio) {
         this.anio = anio;
     }
-    
-    public String mostrarPagina(){
+
+    public String mostrarPagina() {
         DecimalFormat df = new DecimalFormat("0.00");
         String pag = null;
         if (!oferta_producto) {
             pag = "<div style='display: flex; justify-content: center; margin: 35px 0 '>"
                     + "<div class='mitad_pantalla_producto'><img style='object-fit: contain;width: 350px; height: 350px;' src='" + ruta_imagen + "' ></div>"
                     + "<div class='mitad_pantalla_producto'>"
-                        + "<div class='titulo_producto'>" + nom_producto + "</div>"
-                        + "<div class='precio_producto'> S/ "+ df.format(monto_producto) +"</div>"
-                        + "<div class='letras_producto_sm'>" + des_producto  +"</div>"
-                        + "<input class='boton_naranja_producto' type='button' value='Agregar Carrito'>"
+                    + "<div class='titulo_producto'>" + nom_producto + "</div>"
+                    + "<div class='precio_producto'> S/ " + df.format(monto_producto) + "</div>"
+                    + "<div class='letras_producto_sm'>" + desc_producto + "</div>"
+                    + "<input class='boton_naranja_producto' type='button' value='Agregar Carrito'>"
                     + "</div>"
-                + "</div>";
+                    + "</div>";
         } else {
-            double precio = (monto_producto * (100-descuento))/100;
+            double precio = (monto_producto * (100 - descuento)) / 100;
             pag = "<div style='display: flex; justify-content: center; margin: 35px 0 '>"
                     + "<div class='mitad_pantalla_producto'><img style='object-fit: contain;width: 350px; height: 350px;' src='" + ruta_imagen + "'></div>"
                     + "<div class='mitad_pantalla_producto'>"
-                        + "<div class='franja_roja'>Oferta Limitada &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Termina el " + formatoFecha() + "</div>"
-                        + "<div class='titulo_producto'>" + nom_producto + "aaa </div>"
-                        + "<div style='display: flex; align-items: center;'>"
-                            + "<div class='precio_producto_rojo'> S/ " + df.format(precio) + "</div>"
-                            + "<div class='precio_producto_sm' style='margin-left: 20px;'><del>S/ "+ df.format(monto_producto) +"</del></div>"
-                        + "</div>"
-                        + "<div class='letras_producto_sm'>"+des_producto+"</div>"
-                        + "<input class='boton_naranja_producto' type='button' value='Agregar Carrito'>"
+                    + "<div class='franja_roja'>Oferta Limitada &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Termina el " + formatoFecha() + "</div>"
+                    + "<div class='titulo_producto'>" + nom_producto + "aaa </div>"
+                    + "<div style='display: flex; align-items: center;'>"
+                    + "<div class='precio_producto_rojo'> S/ " + df.format(precio) + "</div>"
+                    + "<div class='precio_producto_sm' style='margin-left: 20px;'><del>S/ " + df.format(monto_producto) + "</del></div>"
                     + "</div>"
-                + "</div>";
+                    + "<div class='letras_producto_sm'>" + desc_producto + "</div>"
+                    + "<input class='boton_naranja_producto' type='button' value='Agregar Carrito'>"
+                    + "</div>"
+                    + "</div>";
         }
         return pag;
     }
 
-    public String formatoFecha(){
-        String formated = dia+"/"+mes+"/"+anio;
+    public String formatoFecha() {
+        String formated = dia + "/" + mes + "/" + anio;
         return formated;
     }
 }

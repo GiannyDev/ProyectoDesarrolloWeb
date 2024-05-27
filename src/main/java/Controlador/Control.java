@@ -15,14 +15,42 @@ public class Control extends HttpServlet {
             throws ServletException, IOException {
         int opc = Integer.parseInt(request.getParameter("opc"));
         if (opc == 1)borrarProducto(request, response);
+        if (opc == 2)ingresarProducto(request, response);
+        if (opc == 3)editarProducto(request, response);
     }
     
     protected void borrarProducto(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id_produ = request.getParameter("id_produ");
-        request.setAttribute("eliminado", obj.elimProducto(id_produ));
-        String volver = "PagProductoCRUD.jsp";
+        String volver = "PagProductoCRUD.jsp", verdadero = "Producto eliminado correctamente", falso = "Hubo un error en la eliminacion";
+        request.setAttribute("resultado", obj.elimProducto(id_produ));
         request.setAttribute("volver", volver);
+        request.setAttribute("verdadero", verdadero);
+        request.setAttribute("falso", falso);
+        String pag = "/PagResultado.jsp";
+        request.getRequestDispatcher(pag).forward(request, response);
+    }
+    
+    protected void ingresarProducto(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String volver = "PagProductoCRUD.jsp", verdadero = "Producto agregado correctamente", falso = "Hubo un error en la agregación";
+        Producto p = new Producto(request.getParameter("nom_produ"), request.getParameter("desc_produ"), Double.parseDouble(request.getParameter("monto_produ")), request.getParameter("id_tipo_produ"), request.getParameter("ruta_imagen"));
+        request.setAttribute("resultado", obj.agregarProducto(p));
+        request.setAttribute("volver", volver);
+        request.setAttribute("verdadero", verdadero);
+        request.setAttribute("falso", falso);
+        String pag = "/PagResultado.jsp";
+        request.getRequestDispatcher(pag).forward(request, response);
+    }
+    
+    protected void editarProducto(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String volver = "PagProductoCRUD.jsp", verdadero = "Producto editado correctamente", falso = "Hubo un error en la edición";
+        Producto p = new Producto(request.getParameter("id_produ"), request.getParameter("nom_produ"), request.getParameter("desc_produ"), Double.parseDouble(request.getParameter("monto_produ")), request.getParameter("id_tipo_produ"), request.getParameter("ruta_imagen"));
+        request.setAttribute("resultado", obj.actuProducto(p));
+        request.setAttribute("volver", volver);
+        request.setAttribute("verdadero", verdadero);
+        request.setAttribute("falso", falso);
         String pag = "/PagResultado.jsp";
         request.getRequestDispatcher(pag).forward(request, response);
     }
